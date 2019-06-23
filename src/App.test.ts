@@ -28,13 +28,13 @@ describe('Validate Regional Rectangle is valid',() => {
 
   it('execute validateRetangle with lat out of range',()=>{
     expect(presenter.validateRetangle({...testRect, minLat: -180})).toEqual({
-      type: 'success', content: 'Selected latitude is out of range'
+      type: 'warning', content: 'Selected latitude is out of range'
     });
   })
 
   it('execute validateRetangle with long out of range',()=>{
     expect(presenter.validateRetangle({...testRect, minLong: -360})).toEqual({
-      type: 'success', content: 'Selected longitude is out of range'
+      type: 'warning', content: 'Selected longitude is out of range'
     });
   })
 })
