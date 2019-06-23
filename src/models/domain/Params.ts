@@ -11,17 +11,17 @@ export interface Time {
 }
 
 export interface Rectangle {
-  minLat: number;
-  maxLat: number;
-  minLong: number;
-  maxLong: number;
+  minLat?: number;
+  maxLat?: number;
+  minLong?: number;
+  maxLong?: number;
 }
 
 export interface Circle {
-  lat: number;
-  long: number;
-  maxRad: number;
-  maxRadKm: number;
+  lat?: number;
+  long?: number;
+  maxRad?: number;
+  maxRadKm?: number;
 }
 
 export interface Others {
