@@ -22,7 +22,7 @@ export interface IEarthquakeMapView {
 
 export interface IEarthquakeMapPresneter {
 
-  getEarthquakeList(params: ApiParams):void;
+  getEarthquakeEvents(params: ApiParams):void;
 
   validateTime(time: Time): boolean;
 

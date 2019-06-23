@@ -1,11 +1,19 @@
 import { IEarthquakeMapPresneter } from "presentation/EarthquakeMapContract";
 import { ApiParams, Time, Others, Circle, Rectangle } from "domain/models/Params";
 import { validateMessage } from "domain/models/messages";
+import { GetEarthquakeEventsUseCase, GetEarthquakeEventsInputData, GetEarthquakeEventsCallbacks } from "domain/use_cases/GetEarthquakeEventsUseCase";
 
 export default class EarthquakesMapPresenter implements IEarthquakeMapPresneter {
 
-  getEarthquakeList(params: ApiParams):void {
+  private getEarthquakeEventsUseCase = new GetEarthquakeEventsUseCase();
 
+  getEarthquakeEvents(params: ApiParams):void {
+    const inputData: GetEarthquakeEventsInputData = { params };
+    const callback: GetEarthquakeEventsCallbacks = {
+      onSuccess: () => {console.log('success')},
+      onError: () => {console.log('error')}
+    }
+    this.getEarthquakeEventsUseCase.execute(inputData, callback);
   }
 
   validateTime(time: Time): boolean {
