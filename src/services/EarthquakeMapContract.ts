@@ -1,5 +1,6 @@
-import { EarthquakeEvent } from "@src/models/domain/EarthquakeEvent";
-import { ApiParams, Rectangle, Time, Circle, Others } from "@src/models/domain/Params";
+import { EarthquakeEvent } from "models/domain/EarthquakeEvent";
+import { ApiParams, Rectangle, Time, Circle, Others } from "models/domain/Params";
+import { validateMessage } from "models/domain/messages";
 
 export interface IEarthquakeMapView {
 
@@ -23,12 +24,12 @@ export interface IEarthquakeMapPresneter {
 
   getEarthquakeList(params: ApiParams):void;
 
-  validateTime(time: Time): Boolean;
+  validateTime(time: Time): boolean;
 
-  validateRetangle(rect: Rectangle): Boolean;
+  validateRetangle(rect: Rectangle): validateMessage;
 
-  validateCircle(circle: Circle): Boolean;
+  validateCircle(circle: Circle): boolean;
 
-  validateOthers(others: Others): Boolean;
+  validateOthers(others: Others): boolean;
 
 }
