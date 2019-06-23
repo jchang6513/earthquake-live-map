@@ -28,7 +28,7 @@ export interface IEarthquakeMapPresneter {
 
   validateRetangle(rect: Rectangle): validateMessage;
 
-  validateCircle(circle: Circle): boolean;
+  validateCircle(circle: Circle): validateMessage;
 
   validateOthers(others: Others): boolean;
 
