@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import EarthquakesMapView from 'views/EarthquakesMapView';
+import EarthquakesMapView from 'presentation/EarthquakesMapView';
 
 function App(): JSX.Element {
 

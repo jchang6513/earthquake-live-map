@@ -1,6 +1,6 @@
-import { IEarthquakeMapPresneter } from "services/EarthquakeMapContract";
-import { ApiParams, Time, Others, Circle, Rectangle } from "models/domain/Params";
-import { validateMessage } from "models/domain/messages";
+import { IEarthquakeMapPresneter } from "presentation/EarthquakeMapContract";
+import { ApiParams, Time, Others, Circle, Rectangle } from "domain/models/Params";
+import { validateMessage } from "domain/models/messages";
 
 export default class EarthquakesMapPresenter implements IEarthquakeMapPresneter {
 

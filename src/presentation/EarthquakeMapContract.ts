@@ -1,6 +1,6 @@
-import { EarthquakeEvent } from "models/domain/EarthquakeEvent";
-import { ApiParams, Rectangle, Time, Circle, Others } from "models/domain/Params";
-import { validateMessage } from "models/domain/messages";
+import { EarthquakeEvent } from "domain/models/EarthquakeEvent";
+import { ApiParams, Rectangle, Time, Circle, Others } from "domain/models/Params";
+import { validateMessage } from "domain/models/messages";
 
 export interface IEarthquakeMapView {
 

@@ -1,4 +1,4 @@
-import EarthquakesMapPresenter from 'presenters/EarthquakesMapPresenter';
+import EarthquakesMapPresenter from 'presentation/EarthquakesMapPresenter';
 import { testRect, testCircle } from 'test/testData';
 
 let presenter: EarthquakesMapPresenter;
