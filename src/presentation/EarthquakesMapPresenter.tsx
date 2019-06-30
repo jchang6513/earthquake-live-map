@@ -1,4 +1,4 @@
-import { IEarthquakeMapPresneter } from "presentation/EarthquakeMapContract";
+import { IEarthquakeMapPresneter, IEarthquakeMapView } from "presentation/EarthquakeMapContract";
 import { ApiParams, Time, Others, Circle, Rectangle } from "domain/models/Params";
 import { validateMessage } from "domain/models/messages";
 import {
@@ -11,16 +11,23 @@ import {
   GetEventsCountUseCase,
 } from "domain/use_cases/GetEventsCountUseCase";
 
-
 export default class EarthquakesMapPresenter implements IEarthquakeMapPresneter {
 
+  private view: IEarthquakeMapView;
   private getEarthquakeEventsUseCase = new GetEarthquakeEventsUseCase();
   private getEventsCountUseCase = new GetEventsCountUseCase();
 
+  constructor(view: IEarthquakeMapView) {
+    this.view = view;
+  }
+
   getEarthquakeEvents(params: ApiParams):void {
+    this.view.toggleLoading(true);
     const inputData: GetEarthquakeEventsInputData = { params };
     const callback: GetEarthquakeEventsCallbacks = {
-      onSuccess: () => {console.log('success')},
+      onSuccess: (response) => {
+        this.view.setEarthquakeEvents(response.earthquakeEvents)
+      },
       onError: () => {console.log('error')}
     }
     this.getEarthquakeEventsUseCase.execute(inputData, callback);

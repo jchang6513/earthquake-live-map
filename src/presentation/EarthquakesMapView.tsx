@@ -3,14 +3,17 @@ import EarthquakesMap from 'components/EarthquakesMap';
 import EarthquakesMapPresenter from './EarthquakesMapPresenter';
 import { IEarthquakeMapView } from './EarthquakeMapContract';
 import { EarthquakeEvent } from 'domain/models/EarthquakeEvent';
+import { ApiParams } from 'domain/models/Params';
 
 interface EarthquakesMapViewProps {
 
 }
 
 export interface EarthquakesMapViewState {
+  params: ApiParams;
   earthquakeEvents: EarthquakeEvent[];
   eventsCount: number;
+  loading: boolean;
   showInfo: boolean;
   showSearch: boolean;
   showSideList: boolean;
@@ -24,46 +27,45 @@ export default class EarthquakesMapView
   constructor(props: EarthquakesMapViewProps) {
     super(props);
     this.state = {
+      params: {},
       earthquakeEvents: [],
       eventsCount: 0,
+      loading: false,
       showInfo: false,
       showSearch: false,
       showSideList: true,
     };
-    this.earthquakesMapPresenter =  new EarthquakesMapPresenter();
-    this.earthquakesMapPresenter.getEarthquakeEvents({});
+    this.earthquakesMapPresenter = new EarthquakesMapPresenter(this);
   }
+
+  componentDidMount() {
+    const { params } = this.state;
+    this.earthquakesMapPresenter.getEarthquakeEvents(params);
+  }
+
   render() {
     return (
       <EarthquakesMap />
     )
   }
 
-  showSideList(): void {
-    this.setState({ showSideList: true });
+  toggleLoading(loading: boolean): void {
+    this.setState({ loading });
   }
 
-  hideSideList(): void {
-    this.setState({ showSideList: false });
+  toggleInfo(showInfo: boolean): void {
+    this.setState({ showInfo });
   }
 
-  showInfo(): void {
-    this.setState({ showInfo: true });
+  toggleSearch(showSearch: boolean): void {
+    this.setState({ showSearch });
   }
 
-  hideInfo(): void {
-    this.setState({ showInfo: false });
+  toggleSideList(showSideList: boolean): void {
+    this.setState({ showSideList });
   }
 
-  showSearch(): void {
-    this.setState({ showSearch: true });
-  }
-
-  hideSearch(): void {
-    this.setState({ showSearch: false });
-  }
-
-  setEarthquakeList(earthquakeEvents: EarthquakeEvent[]):void {
+  setEarthquakeEvents(earthquakeEvents: EarthquakeEvent[]):void {
     this.setState({ earthquakeEvents });
   }
 

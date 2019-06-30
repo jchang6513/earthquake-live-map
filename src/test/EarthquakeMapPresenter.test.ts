@@ -1,11 +1,29 @@
 import EarthquakesMapPresenter from 'presentation/EarthquakesMapPresenter';
-import { testRect, testCircle } from 'test/testData';
+import { IEarthquakeMapView } from 'presentation/EarthquakeMapContract';
+import { testRect, testCircle, testParams } from 'test/testData';
+import EarthquakesMapViewSpy from 'test/spy/EarthquakesMapView.spy';
+import {
+  GetEarthquakeEventsUseCase,
+} from "domain/use_cases/GetEarthquakeEventsUseCase";
 
+jest.mock('domain/use_cases/GetEarthquakeEventsUseCase');
+
+let view: EarthquakesMapViewSpy;
 let presenter: EarthquakesMapPresenter;
 
 beforeEach(() => {
-  presenter = new EarthquakesMapPresenter();
+  (GetEarthquakeEventsUseCase as unknown as jest.Mock).mockClear();
+  view = new EarthquakesMapViewSpy
+  presenter = new EarthquakesMapPresenter(view);
 });
+
+describe('get earthquake events list',() => {
+  it('execute getEarthquakeEventsUseCase', () => {
+    presenter.getEarthquakeEvents(testParams);
+    expect(GetEarthquakeEventsUseCase).toHaveBeenCalledTimes(1);
+    expect(view.loading).toBeTruthy();
+  })
+})
 
 describe('Validate Regional Rectangle is valid',() => {
   it('execute validateRetangle',()=>{
