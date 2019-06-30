@@ -4,12 +4,6 @@ import { validateMessage } from "domain/models/messages";
 
 export interface IEarthquakeMapView {
 
-  setEarthquakeList(earthquakeEvents: EarthquakeEvent[]):void;
-
-  showSideList(): void;
-
-  hideSideList(): void;
-
   showInfo(): void;
 
   hideInfo(): void;
@@ -18,11 +12,20 @@ export interface IEarthquakeMapView {
 
   hideSearch(): void;
 
+  showSideList(): void;
+
+  hideSideList(): void;
+
+  setEarthquakeList(earthquakeEvents: EarthquakeEvent[]):void;
+
+  setEventsCount(eventsCount: number): void;
 }
 
 export interface IEarthquakeMapPresneter {
 
   getEarthquakeEvents(params: ApiParams):void;
+
+  getEventsCount(params: ApiParams):void;
 
   validateTime(time: Time): boolean;
 
