@@ -1,11 +1,21 @@
 import { IEarthquakeMapPresneter } from "presentation/EarthquakeMapContract";
 import { ApiParams, Time, Others, Circle, Rectangle } from "domain/models/Params";
 import { validateMessage } from "domain/models/messages";
-import { GetEarthquakeEventsUseCase, GetEarthquakeEventsInputData, GetEarthquakeEventsCallbacks } from "domain/use_cases/GetEarthquakeEventsUseCase";
+import {
+  GetEarthquakeEventsUseCase,
+  GetEarthquakeEventsInputData,
+  GetEarthquakeEventsCallbacks
+} from "domain/use_cases/GetEarthquakeEventsUseCase";
+
+import {
+  GetEventsCountUseCase,
+} from "domain/use_cases/GetEventsCountUseCase";
+
 
 export default class EarthquakesMapPresenter implements IEarthquakeMapPresneter {
 
   private getEarthquakeEventsUseCase = new GetEarthquakeEventsUseCase();
+  private getEventsCountUseCase = new GetEventsCountUseCase();
 
   getEarthquakeEvents(params: ApiParams):void {
     const inputData: GetEarthquakeEventsInputData = { params };
@@ -14,6 +24,15 @@ export default class EarthquakesMapPresenter implements IEarthquakeMapPresneter 
       onError: () => {console.log('error')}
     }
     this.getEarthquakeEventsUseCase.execute(inputData, callback);
+  }
+
+  getEventsCount(params: ApiParams): void {
+    const inputData: GetEarthquakeEventsInputData = { params };
+    const callback: GetEarthquakeEventsCallbacks = {
+      onSuccess: () => {console.log('success')},
+      onError: () => {console.log('error')}
+    }
+    this.getEventsCountUseCase.execute(inputData, callback);
   }
 
   validateTime(time: Time): boolean {
